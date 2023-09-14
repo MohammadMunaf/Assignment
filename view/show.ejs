@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show</title>
+</head>
+
+<body>
+    <form action="/list/create">
+        <button>New</button>
+    </form>
+    <br>
+    <% for( list of allLists){ %>
+        <div>
+            <h3>
+                <%=list.title%>
+            </h3>
+            <%=list.task%><br>
+                dueDate:<%=list.dueDate%><br>
+                <%if(list.status==false){%>
+                    <form action="/list/<%=list._id%>/Status" method="POST">
+                        <label for="Status">Status</label>
+                        <input type="radio" id="Status" name="dueDate">
+                        <button>complete</button>
+                    </form>
+                <%}else{%>
+                    complete
+                <%}%>
+
+                    <form action="/list/<%=list._id%>?_method=DELETE" method="post">
+                        <button>delete</button>
+                    </form>
+                    <form action="/list/edit/<%=list._id%>">
+                        <button>Edit</button>
+                    </form>
+        </div>
+        <% } %>
+            <a href="/list">back</a>
+            <a href="/logout">Logout</a>
+</body>
+
+</html>
